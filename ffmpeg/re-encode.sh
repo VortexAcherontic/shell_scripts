@@ -5,7 +5,7 @@
 # using NVENC.                                          #
 ##########################################################
 
-mkdir -p $PWD/converted
+mkdir -p "$PWD/converted"
 for f in *; do
 	if [ -f "$f" ]; then
 		echo "Processing $f ..."
