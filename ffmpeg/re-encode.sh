@@ -1,8 +1,9 @@
 #!/usr/bin/bash
-##################################################
-# Converts all files in a directory using ffmpeg
-# With a 6000k bitrate (Default Twtich sStream quality)
-# using NVENC.
+#########################################################
+# Converts all files in a directory using ffmpeg        #
+# With a 6000k bitrate (Default Twtich sStream quality) #
+# using NVENC.                                          #
+##########################################################
 
 mkdir -p $PWD/converted
 for f in *; do
