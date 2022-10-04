@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 #########################################################
 # Converts all files in a directory using ffmpeg        #
-# With a 6000k bitrate (Default Twtich sStream quality) #
+# With a 6000k bitrate (Default Twitch Stream quality)  #
 # using NVENC.                                          #
 ##########################################################
 
