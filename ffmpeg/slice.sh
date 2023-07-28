@@ -6,16 +6,16 @@
 ###########################################################
 
 mkdir -p "$PWD/sliced"
-TIME=01:00:00
+TIME=$1
 for f in *; do
 	if [ -f "$f" ]; then
 		echo "Processing $f ..."
-        ffmpeg -i $f \
-        -c copy \
-        -to $TIME "$PWD/sliced/${f%.*}_start.mp4"
+        	ffmpeg -i "$f" \
+		-c copy \
+        	-to $TIME "$PWD/sliced/${f%.*}_start.${f##*.}"
 
-        ffmpeg -i $f \
-        -c copy \
-        -ss $TIME "$PWD/sliced/${f%.*}_end.mp4"
+	        ffmpeg -i "$f" \
+	        -c copy \
+	        -ss $TIME "$PWD/sliced/${f%.*}_end.${f##*.}"
 	fi
 done 
