@@ -1,0 +1,21 @@
+#!/usr/bin/bash
+
+#######################################################
+# Place this file in ~/.local/share/nautilus/scripts/ #
+# and make it executable.                             #
+# This script is meant to run an AppImage inside a    #
+# Distrobox container.                                #
+# Useful for immurtable distros without AppImage      #
+# support.                                            #
+# You setup a dsitrobox container and install         #
+# everything required for AppImages into it           #
+#######################################################
+
+CONTAINER_NAME=appimage
+DIR="$(dirname "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")" ; FILE="$(basename "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
+if [ -z "${CONTAINER_ID}" ]; then
+	#Start bash in the directory the AppImage is located and teh nexecutes it. Some AppImages do not run with absolute path
+	exec /usr/bin/distrobox-enter -n $CONTAINER_NAME -- bash -c "cd ${DIR}; ./${FILE}"
+else
+	exec "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
+fi
