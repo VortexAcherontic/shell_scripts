@@ -14,19 +14,19 @@ params_set=0
 if [ -z ${1+x} ]; then
 	echo "start time is not set (hh:mm:ss)"
 else
-	params_set=$params_set+1
+	params_set=$((params_set+1))
 fi
 
 if [ -z ${2+x} ]; then
 	echo "end time is not set (hh:mm:ss)"
 else
-	params_set=$params_set+1
+	params_set=$((params_set+1))
 fi
 
 if [ -z ${3+x} ]; then
 	echo "scale width is not set (integer)"
 else
-	params_set=$params_set+1
+	params_set=$((params_set+1))
 fi
 
 if [ $params_set == 3 ]; then
