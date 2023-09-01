@@ -24,12 +24,18 @@ else
 fi
 
 if [ -z ${3+x} ]; then
-	echo "scale width is not set (integer)"
+	echo "scale height is not set (integer)"
 else
 	params_set=$((params_set+1))
 fi
 
-if [ $params_set == 3 ]; then
+if [ -z ${4+x} ]; then
+	echo "scale height is not set (integer)"
+else
+	params_set=$((params_set+1))
+fi
+
+if [ $params_set == 4 ]; then
 	for f in *; do
 		if [ -f "$f" ]; then
 			echo "Processing $f ..."
@@ -41,7 +47,8 @@ if [ $params_set == 3 ]; then
 			ffmpeg -i "$working_dir/${f%.*}_trimmed.${f##*.}" \
 			-c:v h264 \
 			-c:a copy \
-			-vf scale=-1:$3:flags=fast_bilinear "$working_dir/${f%.*}_scaled.${f##*.}"
+			-b:v 50M \
+			-vf scale=$3:$4:flags=fast_bilinear "$working_dir/${f%.*}_scaled.${f##*.}"
 		fi
 	done 
 fi
