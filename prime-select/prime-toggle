@@ -6,7 +6,7 @@ case $driver in
 		pkexec /usr/sbin/prime-select nvidia
     		case $? in
 			0)
-			zenity --info --title="Logout" --text="Driver swtiched to nvidia, please log out."
+			zenity --info --title="Logout" --text="Driver switched to nvidia, please log out."
 			;;
 			1)
 			echo $?
@@ -18,7 +18,7 @@ case $driver in
     		pkexec /usr/sbin/prime-select intel
     		case $? in
 			0)
-			zenity --info --title="Logout" --text="Driver swtiched to intel, please log out."
+			zenity --info --title="Logout" --text="Driver switched to intel, please log out."
 			;;
 			1)
 			echo $?

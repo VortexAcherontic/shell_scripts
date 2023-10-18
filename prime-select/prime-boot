@@ -5,7 +5,7 @@ case $? in
 	pkexec /usr/sbin/prime-select boot $selected
 	case $? in
 		0)
-		zenity --info --title="Success" --text="Driver changed usccessfully to $selected."
+		zenity --info --title="Success" --text="Driver changed successfully to $selected."
 		;;
 		1)
 		echo $?
