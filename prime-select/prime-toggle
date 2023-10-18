@@ -1,0 +1,29 @@
+#!/usr/bin/bash
+current=($(exec /usr/sbin/prime-select get-current))
+driver=${current[2]}
+case $driver in
+	intel)
+		pkexec /usr/sbin/prime-select nvidia
+    		case $? in
+			0)
+			zenity --info --title="Logout" --text="Driver swtiched to nvidia, please log out."
+			;;
+			1)
+			echo $?
+			;;
+		esac
+    		
+    	;;
+  	nvidia)
+    		pkexec /usr/sbin/prime-select intel
+    		case $? in
+			0)
+			zenity --info --title="Logout" --text="Driver swtiched to intel, please log out."
+			;;
+			1)
+			echo $?
+			;;
+		esac
+    	;;
+esac
+
