@@ -12,7 +12,9 @@
 #######################################################
 
 CONTAINER_NAME=appimage
-DIR="$(dirname "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")" ; FILE="$(basename "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
+DIR="$(dirname "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
+FILE="$(basename "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
+chmod +x "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
 if [ -z "${CONTAINER_ID}" ]; then
 	# Start bash in the directory the AppImage is located and then executes it.
 	# Some AppImages do not run with absolute paths
