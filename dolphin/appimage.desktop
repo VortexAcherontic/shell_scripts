@@ -1,0 +1,17 @@
+#####################################################
+# Dolphin service menu to run an AppImage inside    #
+# a distrobox container named appimage              #
+#####################################################
+
+[Desktop Entry]
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin
+MimeType=application/*;
+Actions=runAppImage
+X-KDE-Submenu=AppImage
+
+[Desktop Action runAppImage]
+Name=Run AppImage
+Name[de]=AppImage ausführen
+Icon=emblem-system-symbolic
+Exec=/usr/bin/distrobox-enter -n appimage -- bash -c "ch $(dirname %u); chmod +x %u; %u"
