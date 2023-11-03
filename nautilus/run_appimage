@@ -14,7 +14,7 @@
 CONTAINER_NAME=appimage
 DIR="$(dirname "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
 FILE="$(basename "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
-chmod +x "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
+chmod +x ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}
 
 (
 echo "# Updateing appimage container"
