@@ -15,10 +15,13 @@ CONTAINER_NAME=appimage
 DIR="$(dirname "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
 FILE="$(basename "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")"
 chmod +x "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
+(exec /usr/bin/distrobox-upgrade $CONTAINER_NAME)
+
 if [ -z "${CONTAINER_ID}" ]; then
 	# Start bash in the directory the AppImage is located and then executes it.
 	# Some AppImages do not run with absolute paths
-	exec /usr/bin/distrobox-enter -n $CONTAINER_NAME -- bash -c "cd ${DIR}; ./${FILE}"
+	(exec /usr/bin/distrobox-enter -n $CONTAINER_NAME -- bash -c "cd ${DIR}; ./${FILE}")
+	(exec /usr/bin/distrobox-stop $CONTAINER_NAME)
 else
-	exec "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"
+	(exec "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}")
 fi
