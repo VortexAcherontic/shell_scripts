@@ -27,4 +27,4 @@ cd "$GAMEDIR"
 
 [ "$1" = "bash" ] && exec "$@"
 
-wine ./enshrouded_server.exe "$@" &> Logs/wine.log
+wine ./enshrouded_server.exe "$@"

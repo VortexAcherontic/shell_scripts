@@ -9,7 +9,9 @@ podman build . -t ${container_name}
 
 podman run -di \
 -p 15637:15637/udp \
+-p 15637:15637/tcp \
 -p 15636:15636/udp \
+-p 15636:15636/tcp \
 --restart unless-stopped \
 -v $PWD/game:/home/user/Steam:z \
 --name $container_name \
