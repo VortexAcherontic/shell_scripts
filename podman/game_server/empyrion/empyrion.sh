@@ -14,4 +14,5 @@ podman run -di \
 --restart unless-stopped \
 -v $PWD/game:/home/user/Steam:z \
 --name empyrion_server \
+--replace \
 ${container_name}

@@ -10,8 +10,7 @@
 GAMEDIR="$HOME/Steam/steamapps/common/Empyrion - Dedicated Server/DedicatedServer"
 
 cd "$HOME"
-STEAMCMD="./steamcmd.sh +@sSteamCmdForcePlatformType windows +login anonymous $STEAMCMD"
-[ -z "$BETA" ] || STEAMCMD="$STEAMCMD -beta experimental"
+STEAMCMD="./steamcmd.sh +@sSteamCmdForcePlatformType windows +login anonymous"
 
 # eval to support quotes in $STEAMCMD
 eval "$STEAMCMD +app_update 530870 +quit"
@@ -25,9 +24,4 @@ export DISPLAY=:1
 
 cd "$GAMEDIR"
 
-[ "$1" = "bash" ] && exec "$@"
-
-sh -c 'until [ "`netstat -ntl | tail -n+3`" ]; do sleep 1; done
-sleep 5 # gotta wait for it to open a logfile
-tail -F Logs/current.log ../Logs/*/*.log 2>/dev/null' &
-/opt/wine-staging/bin/wine ./EmpyrionDedicated.exe -batchmode -nographics -logFile Logs/current.log "$@" &> Logs/wine.log
+wine ./EmpyrionDedicated.exe -batchmode -nographics -logFile Logs/current.log
