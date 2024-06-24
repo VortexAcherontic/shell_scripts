@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
 #################################################################
-# This script converts all files with a file extention          #
+# This script converts all files with a file extension          #
 # contained in the formats array to Apple ProRes using ffmpeg.  #
 # Note: Make sure you have a version of ffmpeg installed        #
 # with support for ffmpeg.                                      #
-# Verfy using: ffmpeg -encoders | grep -i "prores_ks"           #
+# Verify using: ffmpeg -encoders | grep -i "prores_ks"          #
 #################################################################
 
 mkdir -p "$PWD/converted"
@@ -16,6 +16,7 @@ to_pro_res() {
 	echo "Processing $absolute_file ..."
 	ffmpeg -i "$absolute_file" \
 	-c:v prores_ks \
+	-c:a pcm_s16le \
 	-profile:v 4 \
 	-vendor apl0 \
 	-bits_per_mb 8000 \
