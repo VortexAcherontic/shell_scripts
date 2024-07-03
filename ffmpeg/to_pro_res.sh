@@ -4,7 +4,7 @@
 # This script converts all files with a file extension          #
 # contained in the formats array to Apple ProRes using ffmpeg.  #
 # Note: Make sure you have a version of ffmpeg installed        #
-# with support for ffmpeg.                                      #
+# with support for ProRes.                                      #
 # Verify using: ffmpeg -encoders | grep -i "prores_ks"          #
 #################################################################
 
