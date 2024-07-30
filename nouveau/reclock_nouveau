@@ -1,0 +1,62 @@
+#!/usr/bin/bash
+###########################################
+# 07: core 405 MHz memory 810 MHz         #
+# 0a: core 405-875 MHz memory 1620 MHz    #
+# 0f: core 405-875 MHz memory 2002 MHz    #
+# AC: core 0 MHz memory 0 MHz             #
+#                                         #
+# You may need to modify the power states #
+# and actual dri id according to your GPU #
+###########################################
+
+off=AC
+min=07
+med=0a
+max=0f
+card_id=2
+app_title="Nouveau Re-Clock"
+
+reclock(){
+	pkexec sh -c "echo $1 > /sys/kernel/debug/dri/$card_id/pstate"
+}
+
+print_pstate(){
+	pstate=$( pkexec sh -c "cat /sys/kernel/debug/dri/$card_id/pstate" )
+	zenity --info --title="$app_title" --text="$pstate" --width=600
+	
+}
+
+select_clock(){
+	selected=$(zenity --list --radiolist --column="Selected" --column="Mode" --column="Title" --hide-header FALSE "off" "Turn Off" FALSE "min" "Minmum" FALSE "med" "Medium" FALSE "max" "Maximum" --hide-header --text="Select:" --title="$app_title")
+	case $selected in
+		off)
+			reclock $off
+			;;
+		min)
+			reclock $min
+			;;
+		med)
+			reclock $med
+			;;
+		max)
+			reclock $max
+			;;
+		*)
+			echo "Unknow statement $selected"
+			;;
+	esac
+}
+
+selected=$(zenity --list --radiolist --column="Selected" --column="Command" --column="Title" FALSE "set_clock" "Set GPU Clock" FALSE "get_clock" "Show GPU Clock" --text="Select:" --title="$app_title")
+
+case $selected in
+	set_clock)
+		select_clock
+		;;
+	get_clock)
+		print_pstate
+		;;
+	*)
+		echo "Unknow statement $selected"
+		;;
+esac
