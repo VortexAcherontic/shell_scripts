@@ -1,0 +1,13 @@
+# Place this file at $HOME/.config/systemd/user/
+[Unit]
+Description=Update the user flatpaks
+ConditionACPower=true
+Wants=network.target
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=flatpak update -y
+ExecStop=gdbus call --session --dest=org.freedesktop.Notifications --object-path=/org/freedesktop/Notifications --method=org.freedesktop.Notifications.Notify "" 0 "" 'Flatpak Updater' 'All flatpak applications updated.' '[]' '{"urgency": <1>}' 5000
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7
