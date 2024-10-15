@@ -13,7 +13,7 @@ off=AC
 min=07
 med=0a
 max=0f
-card_id=1
+card_id=0000\:01\:00.0
 app_title="Nouveau Re-Clock"
 
 reclock(){
