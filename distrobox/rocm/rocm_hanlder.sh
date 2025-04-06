@@ -33,6 +33,7 @@ install_rocm(){
         sudo apt install ${TEMP_DIR}$PACKAGE_UBUNTU -y
         ;;
     esac
+    amdgpu-install --usecase=rocm --no-dkms -y
 }
 
 install_rocm $1
