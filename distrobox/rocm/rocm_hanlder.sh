@@ -13,7 +13,7 @@ download_if_not_exists(){
     if [ ! -f $2 ]; then
         echo "Download ${2} package not in cache"
         # Clear old amdgpu-install files if any exist in case we update
-        sudo rm ./amdgpu-install*
+        rm ./amdgpu-install*
         wget ${1}${2}
     else
         echo "${2} already in cache skip download"
@@ -25,12 +25,12 @@ install_rocm(){
     "rocky")
         echo "Install ROCm for Rocky Linux"
         download_if_not_exists $REPO_ROCKY $PACKAGE_ROCKY
-        sudo dnf install ${TEMP_DIR}$PACKAGE_ROCKY -y
+        dnf install ${TEMP_DIR}$PACKAGE_ROCKY -y
         ;;
     "ubuntu")
         echo "Install ROCm for Ubuntu"
         download_if_not_exists $REPO_UBUNTU $PACKAGE_UBUNTU
-        sudo apt install ${TEMP_DIR}$PACKAGE_UBUNTU -y
+        apt install ${TEMP_DIR}$PACKAGE_UBUNTU -y
         ;;
     esac
     amdgpu-install --usecase=rocm --no-dkms -y
