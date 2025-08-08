@@ -1,10 +1,10 @@
 #!/usr/bin/bash
 # Utilty script to handle install and update for rocm within a distrobox container init_hooks
 
-REPO_UBUNTU="https://repo.radeon.com/amdgpu-install/6.4.1/ubuntu/noble/"
-PACKAGE_UBUNTU="amdgpu-install_6.4.60401-1_all.deb"
-REPO_ROCKY="https://repo.radeon.com/amdgpu-install/6.4.1/rhel/8.10/"
-PACKAGE_ROCKY="amdgpu-install-6.4.60401-1.el8.noarch.rpm"
+REPO_UBUNTU="https://repo.radeon.com/amdgpu-install/6.4.3/ubuntu/noble/"
+PACKAGE_UBUNTU="amdgpu-install_6.4.60403-1_all.deb"
+REPO_ROCKY="https://repo.radeon.com/amdgpu-install/6.4.3/rhel/8.10/"
+PACKAGE_ROCKY="amdgpu-install-6.4.60403-1.el8.noarch.rpm"
 TEMP_DIR="/tmp/"
 TEST_BIN="/usr/bin/rocminfo"
 
