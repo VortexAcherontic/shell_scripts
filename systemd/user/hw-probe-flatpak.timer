@@ -1,0 +1,10 @@
+[Unit]
+Description=Monthly Hardware Probe
+After=network.target local-fs.target
+
+[Timer]
+OnCalendar=monthly
+Persistent=true
+
+[Install]
+WantedBy=timers.target
