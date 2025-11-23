@@ -17,15 +17,15 @@ process_files(){
     for filename in ${DIR_TO_WATCH}/*
     do
         sed -i 's/Exec=steam/Exec=xdg-open/' "${filename}"
-        #sed -i 's/Icon=steam/Icon=com.valvesoftware.Steam/' "${filename}"
         move_files "${filename}" "${APPLICATION_DIR}"
     done
     copy_icons
+    update-desktop-database
 }
 
 trap "echo Exited!; exit;" SIGINT SIGTERM
 while [[ 1=1 ]]
 do
   watch --chgexit -n 1 "ls --all -l --recursive --full-time ${DIR_TO_WATCH} | sha256sum" && process_files
-  sleep 1
+  sleep 60
 done
