@@ -1,5 +1,14 @@
 #!/bin/bash
- 
+
+##########################################################################
+# How to use:                                                            #
+# - Mark this file as executable                                         #
+#   - chmod +x /path/to/file/                                            #
+#   - Right-Click -> Properties -> Permissions -> Mark as Executable     #
+# - Add this file to your desktop environments autostart                 #
+# - Profit                                                               #
+##########################################################################
+
 DIR_TO_WATCH="$HOME/.var/app/com.valvesoftware.Steam/Desktop"
 STEAM_ICON_DIR="$HOME/.var/app/com.valvesoftware.Steam/.local/share/icons/"
 APPLICATION_DIR="$XDG_DATA_HOME/applications/"
