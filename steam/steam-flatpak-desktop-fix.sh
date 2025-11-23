@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 ##########################################################################
 # How to use:                                                            #
@@ -23,8 +23,8 @@ copy_icons(){
 }
 
 process_files(){
-    for filename in ${DIR_TO_WATCH}/*
-    do
+    for filename in "${DIR_TO_WATCH}"/*; do
+        [[ -f "$filename" ]] || continue
         sed -i 's/Exec=steam/Exec=xdg-open/' "${filename}"
         move_files "${filename}" "${APPLICATION_DIR}"
     done
@@ -35,6 +35,6 @@ process_files(){
 trap "echo Exited!; exit;" SIGINT SIGTERM
 while [[ 1=1 ]]
 do
-  watch --chgexit -n 1 "ls --all -l --recursive --full-time ${DIR_TO_WATCH} | sha256sum" && process_files
+  process_files
   sleep 60
 done
