@@ -23,17 +23,22 @@ copy_icons(){
 }
 
 process_files(){
+    FILES_CHANGED=0
     for filename in "${DIR_TO_WATCH}"/*; do
         [[ -f "$filename" ]] || continue
         sed -i 's/Exec=steam/Exec=xdg-open/' "${filename}"
         move_files "${filename}" "${APPLICATION_DIR}"
+        FILES_CHANGED=1
     done
-    copy_icons
-    update-desktop-database
+    if [ $FILES_CHANGED == 1 ]; then
+        echo "New entries, updating icons and desktop database..."
+        copy_icons
+        update-desktop-database
+    fi;
 }
 
 trap "echo Exited!; exit;" SIGINT SIGTERM
-while [[ 1=1 ]]
+while [[ true ]]
 do
   process_files
   sleep 60
